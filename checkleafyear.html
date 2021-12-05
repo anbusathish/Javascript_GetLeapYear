@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Check Leaf Year</title>
+    <style type="text/css">
+      .headingstyle {
+        font-size: x-large;
+        text-decoration: underline;
+        cursor: pointer;
+        color: blue;
+      }
+
+      li {
+        text-decoration: underline;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="HideElement">
+      <input
+        type="text"
+        placeholder="Enter your name"
+        name=""
+        required=""
+        id="namevalue"
+      /><button onclick="getName()">Ok</button>
+    </p>
+
+    <h1 id="ValidateTitle" style="text-align: center"></h1>
+
+    <h1>Hello, <span id="bindname"></span>!</h1>
+
+    <span onclick="addInput('inputfield')" class="headingstyle"
+      >Add input field one</span
+    >
+    &nbsp;&nbsp;&nbsp;<span onclick="addInput('button')" class="headingstyle"
+      >Add button here</span
+    ><br /><br />
+
+    <label id="AddDetails"></label><br /><br />
+
+    <div></div>
+    <ul id="GetList">
+      test
+    </ul>
+  </body>
+</html>
+
+<script type="text/javascript">
+  function addInput(type) {
+    if (type == "inputfield") {
+      document.getElementById("AddDetails").innerHTML =
+        '<input type="text" value="" name="leafyearcheck" id="leafyearcheck" />';
+    } else {
+      document
+        .getElementById("AddDetails")
+        .insertAdjacentHTML(
+          "afterend",
+          '&nbsp;<button onclick="checkLeafYear()">Check leap year</button'
+        );
+    }
+  }
+
+  function checkLeafYear() {
+    var year = document.getElementById("leafyearcheck").value;
+    if ((0 == year % 4 && 0 != year % 100) || 0 == year % 400) {
+      document.getElementById("ValidateTitle").innerHTML =
+        year + " is a leap year";
+      document.getElementById("GetList").innerHTML +=
+        "<li>" + year + " is a leap year</li>";
+    } else {
+      document.getElementById("ValidateTitle").innerHTML =
+        year + " is not a leap year";
+      document.getElementById("GetList").innerHTML +=
+        "<li>" + year + " is not a leap year</li>";
+    }
+  }
+
+  function getName() {
+    if (document.getElementById("namevalue").value != "") {
+      document.getElementById("bindname").innerHTML =
+        document.getElementById("namevalue").value;
+      // document.getElementById('HideElement').style.display = 'none';
+    }
+  }
+</script>
